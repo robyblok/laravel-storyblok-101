@@ -17,7 +17,8 @@ class Story
     {
         $start = hrtime(true);
 
-        $cv = Cache::get('cv', 'undefined');
+        $cacheTtlCv = config('storyblok.cache_cv_ttl', 60);
+        $cv = $cacheTtlCv === 0 ? 'undefined' : Cache::get('cv', 'undefined');
 
         $apiResponse = Http::withUrlParameters([
             'base_url' => 'https://api.storyblok.com/v2/cdn/',
@@ -39,7 +40,7 @@ class Story
         //dd($eta/1e+6);
         $return['responsetime'] = $eta / 1e+6;
 
-        Cache::put('cv', $return['cv']);
+        Cache::put('cv', $return['cv'], $cacheTtlCv);
         foreach ($return['rels'] as $key => $value) {
             if (is_array($value)) {
                 Cache::put($value['uuid'], $value);

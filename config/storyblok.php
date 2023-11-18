@@ -15,4 +15,7 @@ return [
     */
     'access_token' => env('STORYBLOK_ACCESS_TOKEN', ''),
     'version' => env('STORYBLOK_VERSION'),
+    'cache_ttl_cv' => env('STORYBLOK_CACHE_TTL_CV', 60),
+    'cache_ttl_story' => env('STORYBLOK_CACHE_TTL_STORY', 60),
+
 ];

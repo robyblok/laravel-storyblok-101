@@ -1,10 +1,13 @@
   <div class="navbar bg-base-100">
       <div class="flex-1">
-          <a class="btn btn-ghost text-xl">daisyUI</a>
+          <a href="{{ url('/')}}"  class="btn btn-ghost text-xl">Laravel x Storyblok 101</a>
+
       </div>
       <div class="flex-none">
           <ul class="menu menu-horizontal px-1">
-              <li><a>Link</a></li>
+              <li><a href="{{ url('/about')}}">About</a></li>
+              <li><a href="{{ url('/services')}}">Services</a></li>
+
               <li>
                   <details>
                       <summary>
