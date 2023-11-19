@@ -13,7 +13,7 @@ class Story
 
     }
 
-    public static function load(string $identifier)
+    public static function load(string $identifier, $lang = '')
     {
         $start = hrtime(true);
 
@@ -24,29 +24,32 @@ class Story
             'base_url' => 'https://api.storyblok.com/v2/cdn/',
             'endpoint' => 'stories',
             'slug' => $identifier,
+
         ])->withQueryParameters(
             [
                 'token' => config('storyblok.access_token'),
                 'version' => config('stroyblok.version'),
                 'cv' => $cv,
                 'resolve_relations' => 'popular-articles.articles',
+                'language' => $lang,
             ]
         )->get('{+base_url}/{endpoint}/{slug}');
 
-        $return = $apiResponse->json();
+        $return = [];
+        if ($apiResponse->ok()) {
 
-        $end = hrtime(true);
-        $eta = $end - $start;
-        //dd($eta/1e+6);
-        $return['responsetime'] = $eta / 1e+6;
+            $return = $apiResponse->json();
+            $end = hrtime(true);
+            $eta = $end - $start;
+            //dd($eta/1e+6);
+            $return['responsetime'] = $eta / 1e+6;
 
-        Cache::put('cv', $return['cv'], $cacheTtlCv);
-        foreach ($return['rels'] as $key => $value) {
-            if (is_array($value)) {
-                Cache::put($value['uuid'], $value);
+            Cache::put('cv', $return['cv'], $cacheTtlCv);
+            foreach ($return['rels'] as $key => $value) {
+                if (is_array($value)) {
+                    Cache::put($value['uuid'], $value);
+                }
             }
-        }
-        if (count($return['rels']) > 0) {
 
         }
 
