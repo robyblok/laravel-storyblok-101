@@ -28,7 +28,7 @@ class Story
         ])->withQueryParameters(
             [
                 'token' => config('storyblok.access_token'),
-                'version' => config('stroyblok.version'),
+                'version' => config('storyblok.version'),
                 'cv' => $cv,
                 'resolve_relations' => 'popular-articles.articles',
                 'language' => $lang,
