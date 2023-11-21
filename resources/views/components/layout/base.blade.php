@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
 </head>
 <body class="mx-auto antialiased">
-    <x-header :story="$story" />
+    <x-header :story="$story" :language="$language" />
     {{ $slot }}
 </body>
 </html>

@@ -13,7 +13,7 @@ class Story
 
     }
 
-    public static function load(string $identifier, $lang = '')
+    public static function load(string $identifier, $lang = '', $resolveRelations = '')
     {
         $start = hrtime(true);
 
@@ -30,7 +30,7 @@ class Story
                 'token' => config('storyblok.access_token'),
                 'version' => config('storyblok.version'),
                 'cv' => $cv,
-                'resolve_relations' => 'popular-articles.articles',
+                'resolve_relations' => $resolveRelations,
                 'language' => $lang,
             ]
         )->get('{+base_url}/{endpoint}/{slug}');

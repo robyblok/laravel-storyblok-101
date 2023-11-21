@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Story;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class StoryblokController extends Controller
@@ -35,7 +34,7 @@ class StoryblokController extends Controller
         $path = $path == '' ? 'home' : $path;
         $cacheTtlStory = config('storyblok.cache_ttl_story', 60);
         $return = Cache::remember($catchall, $cacheTtlStory, function () use ($path, $lang) {
-            return Story::load($path, $lang);
+            return Story::load($path, $lang, 'popular-articles.articles');
         });
         if (count($return) === 0) {
             abort(404);
@@ -43,6 +42,7 @@ class StoryblokController extends Controller
 
         return view('storyblok')
             ->with('catchall', $catchall)
-            ->with('story', $return);
+            ->with('story', $return)
+            ->with('language', $lang);
     }
 }
