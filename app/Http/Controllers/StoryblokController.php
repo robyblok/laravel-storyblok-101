@@ -29,7 +29,7 @@ class StoryblokController extends Controller
         ];
     }
 
-    public function load(Request $request, $catchall = 'home')
+    public function load($catchall = 'home')
     {
         ['lang' => $lang, 'path' => $path] = $this->getLangSlug($catchall);
         $path = $path == '' ? 'home' : $path;
