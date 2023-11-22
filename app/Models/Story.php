@@ -34,6 +34,8 @@ class Story
                 'language' => $lang,
             ]
         )->get('{+base_url}/{endpoint}/{slug}');
+        // https://api.storyblok.com/v2/cdn/stories/home
+        // ?token=ask9soUkv02QqbZgmZdeDAtt&version=draft
 
         $return = [];
         if ($apiResponse->ok()) {
