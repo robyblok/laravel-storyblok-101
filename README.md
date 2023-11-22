@@ -3,7 +3,7 @@
 ## Installing Laravel
 
 ### Requirements
-To install a new Laravel project from scratch you need:
+To install a new Laravel project from scratch, you need:
 - PHP 8.1 (or newer)
 - Composer (for installing packages)
 
@@ -16,6 +16,8 @@ cd laravel-storyblok-101
 
 
 ## Enabling HTTPS
+The Storyblok Visual Editor provides a preview functionality, so you can see the preview of your frontend while you are changing the content. To make it work for Browser security reasons, you must enable HTTPS even if you run your project locally.
+
 With Valet, you can enable HTTPS, in the directory project via:
 
 ```shell
@@ -24,6 +26,7 @@ valet secure
 
 Now you can access your page via https://laravel-storyblok-101.test
 
+If you are using Laravel Herd, you can secure your local sites with TLS: https://herd.laravel.com/docs/1/advanced-usage/securing-sites
 
 
 ## Setting Environment Variables
@@ -49,7 +52,7 @@ Now in the code, you can access these environment variables via `config("storybl
 
 
 ## Defining the "catchall" route
-Just to start quickly, we can create a "catchall" route. A "catchall" route is a routing rule that matches requests not handled by specific routes, allowing a default method controller to be executed.
+To start quickly, we can create a "catchall" route. A "catchall" route is a routing rule that matches requests not handled by specific routes, allowing a default method controller to be executed.
 The file for defining the web route rules is `routes/web.php`.
 
 ```php
@@ -73,6 +76,10 @@ public function load($catchall = 'home')
 {}
 ```
 
+## Adding some style to the Frontend
+
+The focus here is to understand the integration with Laravel and the APIs provided by Storyblok. To speed up the process of creating a styled frontend, we can use Tailwindcss and daisyUI.
+
 ### Installing Tailwindcss and daisyUI
 
 ```shell
@@ -84,7 +91,7 @@ bun add -d @tailwindcss/typography
 
 ### Configuring Tailwind and daisyUI
 
-In the file `tailwind.config.js` you need to set the `content` with the files you can use the Tailwindcss classes (the blade files), and in the `plugins` for loading the typography and daisyui plugin:
+In the file `tailwind.config.js,` you need to set the `content` with the files you can use the Tailwindcss classes (the blade files), and in the `plugins` for loading the typography and daisyUI plugin:
 
 ```js
 /** @type {import('tailwindcss').Config} */
@@ -104,7 +111,7 @@ export default {
 }
 ```
 
-Then in the file `resources/css/app.css` you can load the tailwind plugins:
+Then, in the file `resources/css/app.css`, you can load the tailwind plugins:
 
 ```css
 @tailwind base;
@@ -113,7 +120,8 @@ Then in the file `resources/css/app.css` you can load the tailwind plugins:
 ```
 
 ### Launching the web service
-For launching the web service that provides the assets controlled by vite:
+If you want the page in the browser to automatically reload when you change the HTML or the CSS, you can run the Vite local web service.
+For launching the web service that provides the assets controlled by Vite:
 
 ```
 bun run dev
@@ -124,3 +132,5 @@ Remember to check the root URL in the `.env` file:
 ```
 APP_URL=https://laravel-storyblok-101.test/
 ```
+
+Now you can open your
