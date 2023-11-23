@@ -1,5 +1,17 @@
 # Laravel x Storyblok 101
 
+Welcome to the open-source repository of the seventh Code & Chill with Storyblok episode, __Laravel x Storyblok 101__.
+
+![Code & Chill with Storyblok #7 - Laravel x Storyblok 101](https://a.storyblok.com/f/88751/1940x1160/d069c49cb3/code-chill-laravel-x-storyblok-101-7-website-og.png/m/800x0/)
+
+In the live stream, Roberto from the Storyblok team and one of the Storyblok Ambassadors, Richard, walk you through how to start Laravel and Storyblok from scratch.
+
+- The event landing page is : https://www.storyblok.com/ev/code-chill-with-storyblok-7112023
+- The Storyblok Twitch channel: https://www.twitch.tv/storyblok
+- Laravel: https://laravel.com/
+- Storyblok: https://www.storyblok.com/
+
+
 ## Installing Laravel
 
 ### Requirements
@@ -51,32 +63,8 @@ Now in the code, you can access these environment variables via `config("storybl
 ```
 
 
-## Defining the "catchall" route
-To start quickly, we can create a "catchall" route. A "catchall" route is a routing rule that matches requests not handled by specific routes, allowing a default method controller to be executed.
-The file for defining the web route rules is `routes/web.php`.
 
-```php
-Route::any('{catchall?}',
-    [StoryblokController::class, 'load']
-)->where('catchall', '.*');
-```
-
-
-### Creating the StoryblokController
-
-For creating a controller for managing the catchall rules, we can use the `php artisan make:controller` command:
-```shell
-php artisan make:controller StoryblokController
-```
-The file created is `app/Http/Controllers/StoryblokController.php`.
-The method to implement is `load()` (according to the route rule):
-
-```php
-public function load($catchall = 'home')
-{}
-```
-
-## Adding some style to the Frontend
+## OPTIONAL :  Adding some style to the Frontend
 
 The focus here is to understand the integration with Laravel and the APIs provided by Storyblok. To speed up the process of creating a styled frontend, we can use Tailwindcss and daisyUI.
 
@@ -133,4 +121,37 @@ Remember to check the root URL in the `.env` file:
 APP_URL=https://laravel-storyblok-101.test/
 ```
 
-Now you can open your
+Now you can open your browser at the page https://laravel-storyblok-101.test/.
+
+## Defining the "catchall" route
+
+To start quickly, we can create a "catchall" route. A "catchall" route is a routing rule that matches requests not handled by specific routes, allowing a default method controller to be executed.
+The file for defining the web route rules is `routes/web.php`.
+
+```php
+Route::any('{catchall?}',
+    [StoryblokController::class, 'load']
+)->where('catchall', '.*');
+```
+
+## Creating the StoryblokController
+
+For creating a controller for managing the catchall rules, we can use the `php artisan make:controller` command:
+```shell
+php artisan make:controller StoryblokController
+```
+The file created is `app/Http/Controllers/StoryblokController.php`.
+The method to implement is `load()` (according to the route rule):
+
+```php
+public function load($catchall = 'home')
+{}
+```
+
+## Loading the content via API using Laravel HTTP Client
+
+## The blade view
+
+## The Storyblok dynamic Component
+
+## The view components
