@@ -60,9 +60,12 @@ Now in the code, you can access these environment variables via `config("storybl
     'version' => env('STORYBLOK_VERSION'),
     'cache_ttl_cv' => env('STORYBLOK_CACHE_TTL_CV', 60),
     'cache_ttl_story' => env('STORYBLOK_CACHE_TTL_STORY', 60),
+
 ```
 
-
+> If you want to create and obtain a new access token to the currente space you can rad this article: https://www.storyblok.com/faq/retrieve-and-generate-access-tokens
+>
+>
 
 ## OPTIONAL :  Adding some style to the Frontend
 
@@ -148,7 +151,15 @@ public function load($catchall = 'home')
 {}
 ```
 
+To explore the code, you can jump into the [StoryblokController.php](app/Http/Controllers/StoryblokController.php) file.
+
 ## Loading the content via API using Laravel HTTP Client
+
+For loading the data, because we have to perform an HTTP API Call, we are going to use the HTTP Client provided by Laravel (out-of-the-box solution): https://laravel.com/docs/10.x/http-client
+
+> Laravel provides an expressive, minimal API around the Guzzle HTTP client, allowing you to quickly make outgoing HTTP requests to communicate with other web applications. Laravel's wrapper around Guzzle is focused on its most common use cases and a wonderful developer experience. (Quote: https://laravel.com/docs/10.x/http-client)
+
+Using the HTTP Client allows us to understand how the Storyblok Content Delivery API works.
 
 ## The blade view
 

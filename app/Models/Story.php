@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use Exception;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class Story
 {
@@ -13,6 +17,17 @@ class Story
 
     }
 
+    /**
+     * @param  string  $identifier the slug or id of the Story
+     * @param  string  $lang the lang (optional, if empty, the dfault language is loaded)
+     * @param  string  $resolveRelations (optional a string with the resolved relations)
+     * @return mixed
+     *
+     * @throws BindingResolutionException
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws Exception
+     */
     public static function load(string $identifier, $lang = '', $resolveRelations = '')
     {
         $start = hrtime(true);
@@ -39,11 +54,9 @@ class Story
 
         $return = [];
         if ($apiResponse->ok()) {
-
             $return = $apiResponse->json();
             $end = hrtime(true);
             $eta = $end - $start;
-            //dd($eta/1e+6);
             $return['responsetime'] = $eta / 1e+6;
 
             Cache::put('cv', $return['cv'], $cacheTtlCv);
@@ -52,7 +65,6 @@ class Story
                     Cache::put($value['uuid'], $value);
                 }
             }
-
         }
 
         return $return;

@@ -30,6 +30,17 @@ class StoryblokController extends Controller
 
     public function load($catchall = 'home')
     {
+        /*
+        URL stucture: /<lang>/<path>
+        where lang is optional (no lang == default lang)
+        where path can be "nested" /page/some/other
+        URL path examples:
+        1) /about (default language and "about" slug)
+        2) /page/some (default language and "page/some" slug)
+        3) /it/about ("it" language and "about" slug)
+        4) /it/page/some ("it" language and "page/some" slug)
+        */
+
         ['lang' => $lang, 'path' => $path] = $this->getLangSlug($catchall);
         $path = $path == '' ? 'home' : $path;
         $cacheTtlStory = config('storyblok.cache_ttl_story', 60);
@@ -39,6 +50,10 @@ class StoryblokController extends Controller
         if (count($return) === 0) {
             abort(404);
         }
+        // dd($return);
+        /**
+         * $return is a JSON with keys: story, cv, rels, links, responsetime.
+         */
 
         return view('storyblok')
             ->with('catchall', $catchall)
