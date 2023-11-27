@@ -14,7 +14,8 @@ class StoryblokComponent extends Component
     private $editable;
 
     public function __construct(
-        public array $component
+        public array $component,
+        public string $language = ''
     ) {
         $this->editable = $this->extractEditableInfo($component);
     }
@@ -50,6 +51,7 @@ class StoryblokComponent extends Component
     {
         try {
             return view('components.'.$this->component['component'])
+                ->with('language', $this->language)
                 ->with('editableAttributes', $this->getEditableString());
         } catch (Exception $e) {
             $c = new DefaultComponent($this->component);

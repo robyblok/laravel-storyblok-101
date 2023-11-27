@@ -5,13 +5,16 @@
         @foreach($component["articles"] as $key => $value)
         <div>
             @php($article = Cache::get($value))
+
             <div class="card w-full bg-base-100 shadow-xl">
                 <figure><img src="{{ $article["content"]["image"]["filename"]}}/m/200x100" alt="{{ $article["content"]["image"]["alt"]}}" /></figure>
                 <div class="card-body">
                     <h2 class="card-title">{{ $article["content"]["title"]}}</h2>
                     <p>{{ $article["content"]["teaser"]}}</p>
                     <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Read More</button>
+                        <a href="{{ $language=="" ? "/" : "/" . $language . "/" }}{{ $article["full_slug"] }}" class="btn btn-primary">Read More</a>
+
+
                     </div>
                 </div>
             </div>

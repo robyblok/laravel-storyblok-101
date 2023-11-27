@@ -11,7 +11,9 @@
     {{ $slot }}
     <script type="text/javascript" src="//app.storyblok.com/f/storyblok-v2-latest.js"></script>
     <script type="text/javascript">
-        const storyblokInstance = new StoryblokBridge()
+        const storyblokInstance = new StoryblokBridge({
+            preventClicks: true,
+        })
         storyblokInstance.on('change', () => {
             window.location.reload(true);
         })

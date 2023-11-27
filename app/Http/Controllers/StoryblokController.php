@@ -18,7 +18,7 @@ class StoryblokController extends Controller
         if (count($parts) > 0) {
             if (in_array($parts[0], $this->availableLanguages)) {
                 $returnLang = $parts[0];
-                $returnPath = implode(array_slice($parts, 1));
+                $returnPath = implode('/', array_slice($parts, 1));
             }
         }
 
@@ -45,11 +45,13 @@ class StoryblokController extends Controller
         $path = $path == '' ? 'home' : $path;
         $cacheTtlStory = config('storyblok.cache_ttl_story', 60);
         $return = Cache::remember($catchall, $cacheTtlStory, function () use ($path, $lang) {
+            //dd($path, $lang);
             return Story::load($path, $lang, 'popular-articles.articles');
         });
         if (count($return) === 0) {
             abort(404);
         }
+
         /**
          * $return is a JSON with keys: story, cv, rels, links, responsetime.
          */

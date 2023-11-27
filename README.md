@@ -175,9 +175,15 @@ We are using the `resources/views/components/layout/base.blade.php` as a layout 
 
 The main view also loads the Storyblok dynamic component via the `x-storyblok-component`.
 
-## The Storyblok dynamic Component
+## The Storyblok Dynamic Component
+
+The Storyblok dynamic component `app/View/Components/StoryblokComponent.php` has the responsibility of loading the proper blade view component (`hero.blade.php` , `teaser.blade.php` etc) according to the component technical name found in the JSON (`hero`, `teaser` etc...).
+
+If the blade view component doesn't exist, we can create a default/fallback to be loaded (for example, in this demo project is: `resources/views/components/default.blade.php`)
 
 ## The view components
+
+
 
 ## The Storyblok Bridge
 To allow the preview experience in the Storyblok Visual Editor, add the Stroyblok Bridge in your HTML. To add the Stroyblok Bridge, you have to:
