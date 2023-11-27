@@ -63,7 +63,7 @@ Now in the code, you can access these environment variables via `config("storybl
 
 ```
 
-> If you want to create and obtain a new access token to the currente space you can rad this article: https://www.storyblok.com/faq/retrieve-and-generate-access-tokens
+> If you want to create and obtain a new access token to the current space you can read this article: https://www.storyblok.com/faq/retrieve-and-generate-access-tokens
 >
 >
 
@@ -177,11 +177,27 @@ The main view also loads the Storyblok dynamic component via the `x-storyblok-co
 
 ## The Storyblok Dynamic Component
 
-The Storyblok dynamic component `app/View/Components/StoryblokComponent.php` has the responsibility of loading the proper blade view component (`hero.blade.php` , `teaser.blade.php` etc) according to the component technical name found in the JSON (`hero`, `teaser` etc...).
+The Storyblok dynamic component `app/View/Components/StoryblokComponent.php` has the responsibility of loading the proper blade view component (`hero.blade.php` , `teaser.blade.php` etc.) according to the component technical name found in the JSON (`hero`, `teaser`, etc...).
 
-If the blade view component doesn't exist, we can create a default/fallback to be loaded (for example, in this demo project is: `resources/views/components/default.blade.php`)
+If the blade view component doesn't exist, we can create a default/fallback to be loaded (for example, in this demo project, it is: `resources/views/components/default.blade.php`)
 
 ## The view components
+
+We can create the blade components in the `resources/views/components/` folder. The assumption for this demo project is to create a new blade file for each Storyblok component. The Stroyblok component name (for example, `hero`) has a related blade file (`hero.blade.php`). In the blade file, we can access to:
+
+- `$component` array with the content of the component
+- `$editableAttributes` for making the component editable
+- `$language` for retrieving the language code.
+
+An example:
+
+```html
+<div {!! $editableAttributes !!}>
+<h2>{{ $component["title"] }}</h2>
+<div>LANGUAGE: {{ $language }}</div>
+<pre>{{ print_r($component, true) }}</pre>
+</div>
+```
 
 
 

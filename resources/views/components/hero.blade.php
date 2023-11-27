@@ -6,9 +6,6 @@
 
 ])
 
-
-
-
 <div {!! $editableAttributes !!} class="hero min-h-screen" style="background-image: url({{ Arr::get($component, 'background_image.filename') }}/m/800x0);">
 
     <div class="hero-overlay bg-opacity-60"></div>
