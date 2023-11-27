@@ -235,5 +235,38 @@ In the Blade component, you can use the `{!! $editableAttributes !!}` in the HTM
 
 
 
+## Recap
+
+
+
+What we did in this demo project we set:
+
+- A new Laravel Application
+- the config for some Storyblok parameters like an access token, version, cache TTL
+- a catch-all route
+- a general purpose StoryblokController
+- The model for loading the Story
+- The basic `storyblok` blade vie template
+- The layout layout.base
+- the StoryblokComponent
+- the blade view components
+- the default component
+
+
+
+## References
+
+- Storyblok Laravel Ultimate tutorial: https://www.storyblok.com/tp/storyblok-laravel-ultimate-tutorial
+
+- Storyblok bridge: https://www.storyblok.com/docs/Guides/storyblok-latest-js
+
+- Laravel HTTP Client: https://laravel.com/docs/10.x/http-client
+
+- Optimize your Caching Strategy with Storyblok: https://www.storyblok.com/tp/optimize-your-caching-strategy-with-storyblok
+
+- Storyblok Content Delivery API: https://www.storyblok.com/docs/api/content-delivery/v2
+
+  
+
 
 
