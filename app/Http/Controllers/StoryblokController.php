@@ -50,11 +50,9 @@ class StoryblokController extends Controller
         if (count($return) === 0) {
             abort(404);
         }
-        // dd($return);
         /**
          * $return is a JSON with keys: story, cv, rels, links, responsetime.
          */
-
         return view('storyblok')
             ->with('catchall', $catchall)
             ->with('story', $return)

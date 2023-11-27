@@ -163,6 +163,18 @@ Using the HTTP Client lets us understand how the Storyblok Content Delivery API 
 
 ## The blade view
 
+The view loaded by the Storyblok Controller is the `resources/views/storyblok.blade.php` blade file.
+
+```html
+<x-layout.base :story="$story" :language="$language">
+     <x-storyblok-component :component="Arr::get($story, 'story.content')" :language="$language"/>
+ </x-layout.base>
+```
+
+We are using the `resources/views/components/layout/base.blade.php` as a layout (`x-layout.base`).
+
+The main view also loads the Storyblok dynamic component via the `x-storyblok-component`.
+
 ## The Storyblok dynamic Component
 
 ## The view components
