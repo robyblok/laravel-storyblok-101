@@ -159,10 +159,47 @@ For loading the data, because we have to perform an HTTP API Call, we are going 
 
 > Laravel provides an expressive, minimal API around the Guzzle HTTP client, allowing you to quickly make outgoing HTTP requests to communicate with other web applications. Laravel's wrapper around Guzzle is focused on its most common use cases and a wonderful developer experience. (Quote: https://laravel.com/docs/10.x/http-client)
 
-Using the HTTP Client allows us to understand how the Storyblok Content Delivery API works.
+Using the HTTP Client lets us understand how the Storyblok Content Delivery API works.
 
 ## The blade view
 
 ## The Storyblok dynamic Component
 
 ## The view components
+
+## The Storyblok Bridge
+To allow the preview experience in the Storyblok Visual Editor, add the Stroyblok Bridge in your HTML. To add the Stroyblok Bridge, you have to:
+
+- Add the storyblok bridge (using the JS provided by Storyblok Bridge
+- Create the instance and listen to the event 'change'. The event `change` is triggered by the Editorial Editors when they click the button `Save` in the Storyblok UI.
+- Make the component editable. In other words, allow the content editors to click on the frontend shown in the preview and jump directly into the related Stroyblok component, ready to edit it.
+
+More info about:
+
+- The Visual Editor: https://www.storyblok.com/docs/guide/essentials/visual-editor
+- the Storyblok Bridge: https://www.storyblok.com/docs/Guides/storyblok-latest-js
+
+### Using the Storyblok Bridge
+
+In the `resources/views/components/layout/base.blade.php` file, you can add the Storyblok Bridge.
+
+```HTML
+<script type="text/javascript" src="//app.storyblok.com/f/storyblok-v2-latest.js"></script>
+<script type="text/javascript">
+    const storyblokInstance = new StoryblokBridge()
+    storyblokInstance.on('change', () => {
+        window.location.reload(true);
+    })
+</script>
+```
+
+With the JSON provided by the Storyblok Content Delivery API, for each component, you have an additional attribute `_editable` . This attribute contains an HTML comment with some helpful information for the Storyblok bridge to enable the editable features on the preview front. You can quickly wrap your component with this HTML (to allow the Storyblok bridge to understand where the components start), or you can extract the information from the editable field and add two attributes to the HTML component tag. The two new attributes are `data-blok-c` and `data-blok-uid`. 
+
+In the `app/View/Components/StoryblokComponent.php` file, look at the `extractEditableInfo()` function for retrieving the proper information for the `_editable` field.
+
+In the Blade component, you can use the `{!! $editableAttributes !!}` in the HTML tag of the component. For example: `resources/views/components/hero.blade.php`.
+
+
+
+
+

@@ -9,5 +9,14 @@
 <body class="mx-auto antialiased">
     <x-header :story="$story" :language="$language" />
     {{ $slot }}
+    <script type="text/javascript" src="//app.storyblok.com/f/storyblok-v2-latest.js"></script>
+    <script type="text/javascript">
+        const storyblokInstance = new StoryblokBridge()
+        storyblokInstance.on('change', () => {
+            window.location.reload(true);
+        })
+
+    </script>
+
 </body>
 </html>
