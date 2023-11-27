@@ -19,6 +19,11 @@ class StoryblokController extends Controller
             if (in_array($parts[0], $this->availableLanguages)) {
                 $returnLang = $parts[0];
                 $returnPath = implode('/', array_slice($parts, 1));
+            } else {
+                $queryLang = request()->query('_storyblok_lang', '');
+                if ($queryLang !== '' && in_array($queryLang, $this->availableLanguages)) {
+                    $returnLang = $queryLang;
+                }
             }
         }
 
