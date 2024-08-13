@@ -227,7 +227,7 @@ In the `resources/views/components/layout/base.blade.php` file, you can add the 
 </script>
 ```
 
-With the JSON provided by the Storyblok Content Delivery API, for each component, you have an additional attribute `_editable` . This attribute contains an HTML comment with some helpful information for the Storyblok bridge to enable the editable features on the preview front. You can quickly wrap your component with this HTML (to allow the Storyblok bridge to understand where the components start), or you can extract the information from the editable field and add two attributes to the HTML component tag. The two new attributes are `data-blok-c` and `data-blok-uid`. 
+With the JSON provided by the Storyblok Content Delivery API, for each component, you have an additional attribute `_editable` . This attribute contains an HTML comment with some helpful information for the Storyblok bridge to enable the editable features on the preview front. You can quickly wrap your component with this HTML (to allow the Storyblok bridge to understand where the components start), or you can extract the information from the editable field and add two attributes to the HTML component tag. The two new attributes are `data-blok-c` and `data-blok-uid`.
 
 In the `app/View/Components/StoryblokComponent.php` file, look at the `extractEditableInfo()` function for retrieving the proper information for the `_editable` field.
 
@@ -266,7 +266,6 @@ What we did in this demo project we set:
 
 - Storyblok Content Delivery API: https://www.storyblok.com/docs/api/content-delivery/v2
 
-  
+- Storyblok Laravel Community package: https://github.com/RicLeP/laravel-storyblok
 
-
-
+- Storyblok PHP Client: https://github.com/storyblok/storyblok-php-client
